@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MauiOcrSample.ViewModels"
+             x:Class="MauiOcrSample.Views.MainPage">
+    <ContentPage.BindingContext>
+        <vm:MainPageViewModel />
+    </ContentPage.BindingContext>
+    
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Entry Text="{Binding Model.Value.FilePath}" />
+            </Grid>
+            <Grid Grid.Column="1">
+                <Button Text="画像を選択..." Command="{Binding OpenFileCommand}" />
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="4">
+            <Button Text="OCR実行" Command="{Binding OcrCommand}" />
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="4">
+                <Image Source="{Binding Model.Value.ResultImage}" />
+            </Grid>
+            <Grid Grid.Column="1" Margin="4">
+                <Editor Text="{Binding Model.Value.OcrResult.Text}" IsReadOnly="True" />
+            </Grid>
+        </Grid>
+    </Grid>
+
+</ContentPage>
